@@ -114,7 +114,7 @@ INSERT INTO `DEPARTMENT` (`DNAME`, `DNO`, `MGRSSN`, `MGRSTARTDATE`) VALUES
 ('Safety Department', 'SF004', '00005', '2013-03-12');
 
 INSERT INTO `PROJECT` (`PNAME`, `PNO`, `PLOCATION`, `DNO`) VALUES
-('统一互联网', 'P1', 'Washington', 'FT002'),
+('哈同公路', 'P1', 'Washington', 'FT002'),
 ('六环公路', 'P10', '北京', 'PR003'),
 ('Linux Project', 'P2', '北京', 'DD001'),
 ('SQL Project', 'P3', '哈尔滨', 'DD001'),
@@ -124,4 +124,102 @@ INSERT INTO `PROJECT` (`PNAME`, `PNO`, `PLOCATION`, `DNO`) VALUES
 ('明日之星', 'P7', '中国', 'HR000'),
 ('饮食中心', 'P8', '哈尔滨', 'PR003'),
 ('上海中心', 'P9', '上海', 'FT002');
+
+INSERT INTO `WORKS_ON` (`ESSN`, `PNO`, `HOURS`) VALUES
+('00001', 'P1', 40),
+('00002', 'P1', 40),
+('00003', 'P1', 40),
+('00004', 'P1', 40),
+('00005', 'P1', 40),
+('00006', 'P1', 40),
+('00007', 'P1', 40),
+('00008', 'P1', 40),
+('00009', 'P1', 40),
+('00010', 'P1', 40),
+('00011', 'P1', 120),
+('00011', 'P10', 21),
+('00011', 'P2', 60),
+('00011', 'P3', 40),
+('00011', 'P4', 40),
+('00011', 'P5', 40),
+('00011', 'P6', 40),
+('00011', 'P7', 40),
+('00011', 'P8', 20),
+('00011', 'P9', 35),
+('00012', 'P1', 40),
+('00012', 'P2', 80),
+('00013', 'P1', 40),
+('00013', 'P3', 10),
+('00014', 'P1', 40),
+('00014', 'P3', 30),
+('00015', 'P1', 40),
+('00015', 'P3', 110),
+('00016', 'P1', 40),
+('00017', 'P1', 40),
+('00018', 'P1', 40),
+('00019', 'P1', 40),
+('00020', 'P1', 40),
+('00021', 'P1', 40),
+('00022', 'P1', 40),
+('00023', 'P1', 40),
+('00024', 'P1', 40),
+('00025', 'P1', 40),
+('00026', 'P1', 40),
+('00027', 'P1', 40),
+('00028', 'P1', 40),
+('00029', 'P1', 40),
+('00030', 'P1', 40),
+('00031', 'P1', 40),
+('00032', 'P1', 40),
+('00033', 'P1', 40),
+('00034', 'P1', 40),
+('00035', 'P1', 40),
+('00036', 'P1', 40),
+('00037', 'P1', 40),
+('00038', 'P1', 40),
+('00039', 'P1', 40),
+('00040', 'P1', 40),
+('00041', 'P1', 40),
+('00042', 'P1', 40),
+('00043', 'P1', 40),
+('00044', 'P1', 40),
+('00045', 'P1', 40),
+('00046', 'P1', 40),
+('00047', 'P1', 40),
+('00048', 'P1', 40),
+('00049', 'P1', 40),
+('00050', 'P1', 40),
+('00051', 'P1', 40);
+```
+
+### 3. task
+
+```sql
+--- 参加了项目名为“哈同公路”的员工名字
+select distinct ENAME from EMPLOYEE where ESSN in (select ESSN from WORKS_ON natural join PROJECT WHERE PNAME="哈同公路");
+
+--- 在“研发部”工作且工资低于3000元的员工名字和地址
+select distinct ENAME, ADDRESS from EMPLOYEE where SALARY < 3000 and DNO in (select DNO from DEPARTMENT where DNAME="研发部");
+select distinct ENAME, ADDRESS from EMPLOYEE natural join DEPARTMENT where DNAME="研发部" and salary < 3000;
+
+--- 没有参加项目编号为P1的项目的员工姓名(注意参与多次的情况)
+select distinct ENAME from EMPLOYEE where ESSN not in (select ESSN from WORKS_ON where PNO = 'P1');
+
+--- 由张红领导的工作人员的姓名和所在部门的名字
+select distinct ENAME, DNAME from EMPLOYEE natural join DEPARTMENT where SUPERSSN = (select ESSN from EMPLOYEE where ENAME="张红");
+
+--- 至少参加了项目编号为P1和P2的项目的员工号
+select distinct ESSN from WORKS_ON where PNO="P1" and ESSN in (select ESSN from WORKS_ON where PNO="P2");
+
+--- 参加了全部项目的员工号码和姓名
+select distinct ESSN, ENAME from EMPLOYEE natural join WORKS_ON group by ESSN having count(distinct PNO) = (select count(distinct PNO) from PROJECT);
+
+--- 员工平均工资低于3000元的部门名称
+select distinct DNAME from DEPARTMENT natural join EMPLOYEE group by DNO having avg(SALARY) < 3000;
+
+--- 至少参与了3个项目且工作总时间不超过8小时的员工名字
+select distinct ENAME from EMPLOYEE natural join WORKS_ON group by ESSN having count(distinct PNO) >= 3 and sum(HOURS) <= 8;
+
+--- 每个部门的员工小时平均工资
+select DNO, sum(SALARY)/sum(HOURS) as AVERAGE from EMPLOYEE natural join WORKS_ON group by DNO;
 ```
