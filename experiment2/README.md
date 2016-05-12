@@ -1,5 +1,49 @@
 # 实验二: 使用C(Node)语言操作MySQL数据库
 
+**based on node and babel**
+
+### Usage
+
+#### run
+```javascript
+npm install
+
+node build/index.js -q=1 -p="{\"PNO\": \"P2\"}"
+```
+
+### dev
+``` javascript
+npm install
+
+babel src/ -d build/
+
+node build/index.js -q=1 -p="{\"PNO\": \"P2\"}"
+
+```
+
+#### Example Command
+
+``` shell
+node build/index.js -q=1 -p="{\"PNO\": \"P2\"}"
+
+node build/index.js -q=2 -p="{\"PNAME\": \"哈同公路\"}"
+
+select distinct ENAME, ADDRESS from EMPLOYEE natural join DEPARTMENT where DNAME = "研发部";
+
+node build/index.js -q=4 -p="{\"DNAME\": \"研发部\",\"SALARY\": "8000"}"
+
+node build/index.js -q=5 -p="{\"PNO\": \"P2\"}"
+
+node build/index.js -q=6 -p="{\"ENAME\": \"张红\"}"
+
+node build/index.js -q=7 -p="{\"PNO1\": \"P1\", \"PNO2\": \"P2\"}"
+
+node build/index.js -q=8 -p="{\"SALARY\": \"3000\"}"
+
+node build/index.js -q=9 -p="{\"N\": \"3\", \"HOURS\":\"8\"}"
+
+```
+
 ### SQL 语句
 
 ``` sql
