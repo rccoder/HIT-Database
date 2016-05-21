@@ -1,0 +1,311 @@
+<!doctype html>
+<html class="no-js">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hello Amaze UI</title>
+
+    <!-- Set render engine for 360 browser -->
+    <meta name="renderer" content="webkit">
+
+    <!-- No Baidu Siteapp-->
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <link rel="icon" type="image/png" href="assets/i/favicon.png">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="assets/i/app-icon72x72@2x.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+    <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="assets/i/app-icon72x72@2x.png">
+    <meta name="msapplication-TileColor" content="#0e90d2">
+
+    <link rel="stylesheet" href="assets/css/amazeui.min.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+</head>
+
+<body>
+    <header class="am-topbar">
+        <h1 class="am-topbar-brand">
+    <a href="#">Lab3</a>
+  </h1>
+
+        <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#doc-topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+
+        <div class="am-collapse am-topbar-collapse" id="doc-topbar-collapse">
+            <ul class="am-nav am-nav-pills am-topbar-nav">
+                <li class="am-active"><a href="#">首页</a></li>
+                <li><a href="crud">增删查改</a></li>
+            </ul>
+        </div>
+    </header>
+    <!--在这里编写你的代码-->
+    <form class="am-form am-g am-g-fixed">
+        <fieldset>
+            <legend>1. 参加了项目编号为%PNO%的项目的员工号(普通查询)</legend>
+
+            <div class="am-form-group">
+                <label for="p-1">项目号</label>
+                <input type="text" id="p-1" placeholder="输入项目号(如： P2)">
+            </div>
+
+            <p><button id="s-1" class="am-btn am-btn-default">提交</button></p>
+
+            <div class="am-form-group">
+                <table class="am-table">
+                    <thead>
+                        <tr>
+                            <th>ESSN</th>
+                        </tr>
+                    </thead>
+                    <tbody id="t-1">
+                    </tbody>
+                </table>
+            </div>
+        </fieldset>
+    </form>
+    <form class="am-form am-g am-g-fixed">
+        <fieldset>
+            <legend>2. 参加了项目名为%PNAME%的员工名字(嵌套查询)</legend>
+
+            <div class="am-form-group">
+                <label for="p-2">项目名</label>
+                <input type="text" id="p-2" placeholder="输入项目名(如： 哈同公路)">
+            </div>
+
+            <p><button id="s-2" class="am-btn am-btn-default">提交</button></p>
+
+            <div class="am-form-group">
+                <table class="am-table">
+                    <thead>
+                        <tr>
+                            <th>ENAME</th>
+                        </tr>
+                    </thead>
+                    <tbody id="t-2">
+                    </tbody>
+                </table>
+            </div>
+        </fieldset>
+    </form>
+    <form class="am-form am-g am-g-fixed">
+        <fieldset>
+            <legend>3. 在%DNAME%工作的所有工作人员的名字和地址(连接查询)</legend>
+
+            <div class="am-form-group">
+                <label for="p-3">部门</label>
+                <input type="text" id="p-3" placeholder="输入部门号(如： 研发部)">
+            </div>
+
+            <p><button id="s-3" class="am-btn am-btn-default">提交</button></p>
+
+            <div class="am-form-group">
+                <table class="am-table">
+                    <thead>
+                        <tr>
+                            <th>ENAME</th>
+                            <th>ADDRESS</th>
+                        </tr>
+                    </thead>
+                    <tbody id="t-3">
+                    </tbody>
+                </table>
+            </div>
+        </fieldset>
+    </form>
+    <form class="am-form am-g am-g-fixed">
+        <fieldset>
+            <legend>4. 至少参与了%N%个项目且工作总时间不超过%HOURS%小时的员工名字(分组查询)</legend>
+
+            <div class="am-form-group">
+                <label for="p-4-1">项目数</label>
+                <input type="text" id="p-4-1" placeholder="输入项目数(如： 2)">
+                <label for="p-4-2">时间数</label>
+                <input type="text" id="p-4-2" placeholder="输入时间数(如： 80)">
+            </div>
+
+            <p><button id="s-4" class="am-btn am-btn-default">提交</button></p>
+
+            <div class="am-form-group">
+                <table class="am-table">
+                    <thead>
+                        <tr>
+                            <th>ENAME</th>
+                        </tr>
+                    </thead>
+                    <tbody id="t-4">
+                    </tbody>
+                </table>
+            </div>
+        </fieldset>
+    </form>
+    <form class="am-form am-g am-g-fixed">
+        <fieldset>
+            <legend>5. 每个部门的员工小时平均工资(视图查询AVERAGE_SALARY)</legend>
+
+            <p><button id="s-5" class="am-btn am-btn-default">提交</button></p>
+
+            <div class="am-form-group">
+                <table class="am-table">
+                    <thead>
+                        <tr>
+                            <th>DNO</th>
+                            <th>AVERAGE</th>
+                        </tr>
+                    </thead>
+                    <tbody id="t-5">
+                    </tbody>
+                </table>
+            </div>
+        </fieldset>
+    </form>
+    <!--[if (gte IE 9)|!(IE)]><!-->
+    <script src="assets/js/jquery.min.js"></script>
+    <!--<![endif]-->
+    <!--[if lte IE 8 ]>
+      <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+      <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+      <script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+    <![endif]-->
+    <script src="assets/js/amazeui.min.js"></script>
+    <script>
+        (function() {
+            // 1
+            $("#s-1").click(function(e) {
+                e.preventDefault();
+                $.ajax({
+                    method: "post",
+                    url: 'test1',
+                    data: {
+                        pno: $("#p-1").val()
+                    },
+                    success: function(data) {
+
+                        console.log(data);
+                        var str = "";
+                        for (var i = 0, l = data.length; i < l; i++) {
+                            console.log(e);
+                            str += "<tr><td>";
+                            str += data[i].ESSN;
+                            str += "</td></tr>"
+                        }
+                        $("#t-1").html(str);
+                    }
+                });
+            });
+
+            //
+            $("#s-2").click(function(e) {
+                e.preventDefault();
+                $.ajax({
+                    method: "post",
+                    url: 'test2',
+                    data: {
+                        pname: $("#p-2").val()
+                    },
+                    success: function(data) {
+
+                        console.log(data);
+                        var str = "";
+                        for (var i = 0, l = data.length; i < l; i++) {
+                            console.log(e);
+                            str += "<tr><td>";
+                            str += data[i].ENAME;
+                            str += "</td></tr>"
+                        }
+                        $("#t-2").html(str);
+                    }
+                });
+            });
+
+            //
+            $("#s-3").click(function(e) {
+                e.preventDefault();
+                $.ajax({
+                    method: "post",
+                    url: 'test3',
+                    data: {
+                        dname: $("#p-3").val()
+                    },
+                    success: function(data) {
+
+                        console.log(data);
+                        var str = "";
+                        for (var i = 0, l = data.length; i < l; i++) {
+                            console.log(e);
+                            str += "<tr><td>";
+                            str += data[i].ENAME;
+                            str += "</td><td>";
+                            str += data[i].ADDRESS;
+                            str += "</td></tr>"
+                        }
+                        $("#t-3").html(str);
+                    }
+                });
+            });
+
+            //
+            $("#s-4").click(function(e) {
+                e.preventDefault();
+                $.ajax({
+                    method: "post",
+                    url: 'test4',
+                    data: {
+                        n: $("#p-4-1").val(),
+                        hours: $("#p-4-2").val()
+                    },
+                    success: function(data) {
+
+                        console.log(data);
+                        var str = "";
+                        for (var i = 0, l = data.length; i < l; i++) {
+                            console.log(e);
+                            str += "<tr><td>";
+                            str += data[i].ENAME;
+                            str += "</td></tr>"
+                        }
+                        $("#t-4").html(str);
+                    }
+                });
+            });
+
+            //
+            $("#s-5").click(function(e) {
+                e.preventDefault();
+                $.ajax({
+                    method: "get",
+                    url: 'test5',
+                    data: "",
+                    success: function(data) {
+
+                        console.log(data);
+                        var str = "";
+                        for (var i = 0, l = data.length; i < l; i++) {
+                            console.log(e);
+                            str += "<tr><td>";
+                            str += data[i].DNO;
+                            str += "</td><td>";
+                            str += data[i].AVERAGE;
+                            str += "</td></tr>"
+                        }
+                        $("#t-5").html(str);
+                    }
+                });
+            })
+
+        })();
+    </script>
+</body>
+
+</html>

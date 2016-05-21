@@ -47,7 +47,6 @@ CREATE TABLE IF NOT EXISTS `WORKS_ON` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 describe `WORKS_ON`;
-
 ```
 
 ### 2. insert
@@ -223,3 +222,4 @@ select distinct ENAME from EMPLOYEE natural join WORKS_ON group by ESSN having c
 --- 每个部门的员工小时平均工资
 select DNO, sum(SALARY)/sum(HOURS) as AVERAGE from EMPLOYEE natural join WORKS_ON group by DNO;
 ```
+
