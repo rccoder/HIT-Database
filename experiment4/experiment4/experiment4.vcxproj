@@ -70,6 +70,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="extmem.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="t.cpp" />
     <ClCompile Include="test.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

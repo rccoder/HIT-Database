@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include "extmem.h"
 
-int main(int argc, char **argv)
+int smain(int argc, char **argv)
 {
 	Buffer buf; /* A buffer */
 	unsigned char *blk; /* A pointer to a block */
